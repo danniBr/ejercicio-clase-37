@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+<div class="row">
+	<div class="col-md-6">
+		<table class="table">
+			<tr>
+				<th>Name:</th>
+				<th>projects:</th>
+			</tr>
+			<tr>
+			<td><%= @worker.name %></td>
+		    <td><%= @worker.projects.pluck(:name).join(', ') %></td>
+			</tr>
+		</table>
+	</div>
+	<div class="col-md-6">
+		<h3>Projects</h3>
+		<ul>
+		  	<% @projects.each do |project| %>
+			  <li>
+			  	<%= project.name %>
+			    <%= link_to 'Asignar', worker_add_project_path(project_id: project.id, worker_id: @worker.id), method: :post %>
+			  </li>
+			<% end %>
+		</ul>
+
+	</div>
+</div>
+
+
+
+<%= link_to 'Edit', edit_worker_path(@worker) %> |
+<%= link_to 'Back', workers_path %>
